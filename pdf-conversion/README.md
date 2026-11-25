@@ -56,10 +56,12 @@ lokal yang memuat data pribadi harus tetap di luar Git (lihat `.gitignore`).
 
 - **Opsi 2**: `uvicorn` lokal dijalankan; `GET /healthz` 200; `POST /convert?to=docx`
   menerima multipart `file`, mengembalikan DOCX hasil konversi. Gerbang Bearer token
-  ada di kode (`AUTH_TOKEN`).
+  ada di kode (`AUTH_TOKEN`). Klien sisi app `app-js/convert-bridge.js` sudah ada:
+  validasi HTTPS, token via header, batas 15 MB/timeout 60 dtk, kode error jelas,
+  hook fallback Opsi 1; 10 asersi uji Node 22 lolos.
 - **Opsi 1**: logika ekstraksi baris/blok diuji pada teks sintetis dengan Node 22;
   pengelompokan baseline, spasi antar item, dan model blok berjalan. Belum
-  di-angkut ke bundle APK.
+  di-angkut ke alur UI bundle APK.
 - **Opsi 3**: pola rebuild per dokumen didokumentasikan; implementasi nyata
   dikerjakan per template.
 
@@ -67,8 +69,9 @@ lokal yang memuat data pribadi harus tetap di luar Git (lihat `.gitignore`).
 
 - Deploy Opsi 2 ke hosting (Dockerfile sudah disiapkan), pasang `AUTH_TOKEN`
   panjang, HTTPS, batas ukuran dan pembersihan temp (sudah ada di kode).
-- Bridge JS di `shim/android-shim.js`: pilih rute sesuai kondisi (offline/online/
-  pola dikenal), ambil biner PDF, kirim ke endpoint bila Opsi 2, simpan hasil.
+- Wiring bundle UI: tombol Edit/Convert memanggil `window.__genofficePdfConvert`
+  sesuai kondisi (offline/online), dialog pengaturan endpoint/token, simpan DOCX
+  hasil ke penyimpanan app. Bridge shim sudah terpasang di `pdf/index.html`.
 - Opsi 1: tambahkan ekstraksi gambar, deteksi tabel dua kolom, writer DOCX dari
   model blok.
 - Verifikasi kualitas pada sampel PDF lain.
