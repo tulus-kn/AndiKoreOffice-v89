@@ -58,7 +58,9 @@ lokal yang memuat data pribadi harus tetap di luar Git (lihat `.gitignore`).
   menerima multipart `file`, mengembalikan DOCX hasil konversi. Gerbang Bearer token
   ada di kode (`AUTH_TOKEN`). Klien sisi app `app-js/convert-bridge.js` sudah ada:
   validasi HTTPS, token via header, batas 15 MB/timeout 60 dtk, kode error jelas,
-  hook fallback Opsi 1; 10 asersi uji Node 22 lolos.
+  hook fallback Opsi 1; 10 asersi uji Node 22 lolos. Dialog setelan penyedia
+  `app-js/pdf-convert-settings.js` sudah ada (gratis/berbayar, self-host/SaaS),
+  9 asersi uji Node 22 lolos; tombol pembuka belum disambung ke bundle UI.
 - **Opsi 1**: logika ekstraksi baris/blok diuji pada teks sintetis dengan Node 22;
   pengelompokan baseline, spasi antar item, dan model blok berjalan. Belum
   di-angkut ke alur UI bundle APK.
@@ -70,8 +72,9 @@ lokal yang memuat data pribadi harus tetap di luar Git (lihat `.gitignore`).
 - Deploy Opsi 2 ke hosting (Dockerfile sudah disiapkan), pasang `AUTH_TOKEN`
   panjang, HTTPS, batas ukuran dan pembersihan temp (sudah ada di kode).
 - Wiring bundle UI: tombol Edit/Convert memanggil `window.__genofficePdfConvert`
-  sesuai kondisi (offline/online), dialog pengaturan endpoint/token, simpan DOCX
-  hasil ke penyimpanan app. Bridge shim sudah terpasang di `pdf/index.html`.
+  sesuai kondisi (offline/online), tombol pembuka dialog setelan
+  (`data-pdfconv="settings"` / `__akOpenPdfConvertSettings`), simpan DOCX hasil
+  ke penyimpanan app. Bridge dan dialog shim sudah terpasang di `pdf/index.html`.
 - Opsi 1: tambahkan ekstraksi gambar, deteksi tabel dua kolom, writer DOCX dari
   model blok.
 - Verifikasi kualitas pada sampel PDF lain.

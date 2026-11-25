@@ -1,10 +1,12 @@
-# Modul sisi app (JS) — Opsi 1 inti + bridge Opsi 2
+# Modul sisi app (JS) — Opsi 1 inti + bridge Opsi 2 + dialog setelan
 
-Dua berkas di folder ini hidup di lapisan shim aplikasi (sebelum bundle minified):
+Tiga berkas di folder ini hidup di lapisan shim aplikasi (sebelum bundle minified):
 
 - `pdf-reconstruct.js` — inti **Opsi 1** (rekonstruksi offline di perangkat).
 - `convert-bridge.js` — klien **Opsi 2** (kirim PDF ke backend) sekaligus
   tempat memasang fallback lokal Opsi 1.
+- `pdf-convert-settings.js` — dialog pengaturan penyedia, gaya seperti dialog
+  setelan AI: pilih provider gratis/berbayar, isi alamat + kunci, simpan.
 
 ## convert-bridge.js (klien server + fallback)
 
@@ -42,6 +44,32 @@ Keamanan yang sudah diterapkan:
 Uji logika dengan Node 22 (stub `localStorage`/`fetch`): 10 asersi lolos —
 konfigurasi kosong `NOT_CONFIGURED`, http `BAD_URL`, https sukses mengembalikan
 DOCX, header token benar, fallback lokal dipakai saat server 500.
+
+## pdf-convert-settings.js (dialog penyedia)
+
+Global: `window.__akOpenPdfConvertSettings`.
+
+Dialog memilih rute konversi, dikelompokkan **Gratis** dan **Berbayar**:
+
+- Gratis self-host: Render, Google Cloud Run (kuota).
+- Berbayar self-host: Railway, Fly.io.
+- SaaS: iLovePDF, PDF.co, Apify PDF→Word (perlu adapter format terpisah).
+
+Penyimpanan localStorage (dibaca bridge):
+
+| Kunci | Isi |
+|-------|-----|
+| `ak.pdfconv.provider` | id penyedia terpilih |
+| `ak.pdfconv.endpoint` | base URL server / API; kosong = rute nonaktif |
+| `ak.pdfconv.token` | Bearer token / API key |
+
+Validasi: alamat harus HTTPS, tanpa nama pengguna/kata sandi/port di URL;
+kosong diizinkan sebagai tanda rute server dinonaktifkan. Tombol ber-atribut
+`data-pdfconv="settings"` membuka dialog ini; sampai bundle menambahkan tombol
+tersebut, dialog bisa dipanggil dari konsol lewat global di atas.
+
+Uji logika Node 22 (stub DOM/localStorage): 9 asersi lolos — dialog terbentuk,
+http ditolak, https + kunci tersimpan, alamat kosong menandai rute nonaktif.
 
 ## pdf-reconstruct.js (inti Opsi 1)
 
