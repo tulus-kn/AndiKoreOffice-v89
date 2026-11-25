@@ -132,3 +132,19 @@ Tempelkan berkas di `assets/public/...` pada proyek sumber sebelum build,
 lakukan build ulang, zipalign, dan tanda tangani dengan kunci rilis asli.
 Hasil modifikasi atas APK lama yang dihapus signature-nya **bukan** rilis
 siap instal; jangan menonaktifkan pemeriksaan integritas `SigApp`.
+
+## Perbaikan guard integritas (2026-11-26)
+
+- Gejala: build v89 awal membekukan antarmuka dengan layar
+  "Aplikasi telah dimodifikasi" dan menandai `/shell.js`,
+  `/shim/ai-settings.js`, `/ak-theme.js` (lalu `/shim/ai-panel.js`,
+  `/shim/ai-anywhere.js` pada cek delay).
+- Penyebab: `shim/guard.js` menyimpan pin SHA-256 (di-XOR 0xa5, base64)
+  untuk byte build v88. Setelah overlay patch mengubah JS, pin tidak cocok
+  sehingga guard menilai berkas dimodifikasi.
+- Tindakan: pin QUICK/FULL dihitung ulang dari byte build v89 aktual dan
+  ditulis kembali ke `guard.js`; guard tetap aktif, hanya re-anchor ke v89.
+- Verifikasi: seluruh pin cocok terhadap aset di APK final; signature
+  v1/v2/v3 terverifikasi dengan sertifikat Andy Kore; `debuggable`,
+  `allowBackup`, `usesCleartextTraffic` tetap nonaktif.
+- SHA256 APK final: `c58194270c7d99210060b22f34ccc042cf70be43f17383b5a552831a69abdcae`.

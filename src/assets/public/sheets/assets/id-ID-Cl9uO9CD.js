@@ -1,0 +1,1 @@
+import{m as a}from"./index-DNpYkj0j.js";const t={"sheets-note-ui":{note:{placeholder:"Ketik di sini"},rightClick:{addNote:"Tambah Catatan",deleteNote:"Hapus Catatan",toggleNote:"Tampilkan/Sembunyikan Catatan"}}},e=a(t);export{e as default};

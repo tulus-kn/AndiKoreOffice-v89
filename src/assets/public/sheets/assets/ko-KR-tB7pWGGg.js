@@ -1,0 +1,1 @@
+import{m as e}from"./index-DNpYkj0j.js";const t={"sheets-note-ui":{note:{placeholder:"\uC5EC\uAE30\uC5D0 \uC785\uB825"},rightClick:{addNote:"\uB178\uD2B8 \uCD94\uAC00",deleteNote:"\uB178\uD2B8 \uC0AD\uC81C",toggleNote:"\uB178\uD2B8 \uD45C\uC2DC/\uC228\uAE30\uAE30"}}},o=e(t);export{o as default};

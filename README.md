@@ -11,6 +11,8 @@ dengan patch keamanan P1 dari audit v88.
 | `src/assets/public/` | Aset web/JS yang terbungkus APK (shell, shim, render) |
 | `src-docs/PATCH-NOTES.md` | Catatan patch, audit P1, dan item yang masih tertunda |
 
+- SHA256 APK: `c58194270c7d99210060b22f34ccc042cf70be43f17383b5a552831a69abdcae`
+
 ## Identitas signing
 
 - Keystore rilis baru: **CN=Andy Kore, O=AndiKore, L=Kupang, C=ID**
@@ -26,6 +28,8 @@ dengan patch keamanan P1 dari audit v88.
 - Kunci API tidak lagi diletakkan di query URL; dikirim lewat header pada
   endpoint HTTPS resmi yang ada di allowlist.
 - `usesCleartextTraffic=false`, `debuggable=false`, `allowBackup=false`.
+- Guard integritas (`shim/guard.js`) di-anchor ulang ke hash byte build v89 ini
+  setelah patch; pin QUICK/FULL diverifikasi cocok terhadap aset di APK.
 - Kunci rilis (`.jks`) dan password **tidak** disimpan di repo ini.
 
 ## Status

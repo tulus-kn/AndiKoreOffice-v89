@@ -1,0 +1,1 @@
+import{m as e}from"./index-DNpYkj0j.js";const t={"sheets-note-ui":{note:{placeholder:"Nh\u1EADp t\u1EA1i \u0111\xE2y"},rightClick:{addNote:"Th\xEAm ghi ch\xFA",deleteNote:"X\xF3a ghi ch\xFA",toggleNote:"Hi\u1EC7n/\u1EA8n ghi ch\xFA"}}},h=e(t);export{h as default};

@@ -1,0 +1,1 @@
+import{m as t}from"./index-DNpYkj0j.js";const e={"sheets-note-ui":{note:{placeholder:"Wpisz tutaj"},rightClick:{addNote:"Dodaj notatk\u0119",deleteNote:"Usu\u0144 notatk\u0119",toggleNote:"Poka\u017C/Ukryj notatk\u0119"}}},o=t(e);export{o as default};

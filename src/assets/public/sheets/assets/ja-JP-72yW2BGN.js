@@ -1,0 +1,1 @@
+import{m as e}from"./index-DNpYkj0j.js";const t={"sheets-note-ui":{note:{placeholder:"\u3053\u3053\u306B\u5165\u529B"},rightClick:{addNote:"\u30B3\u30E1\u30F3\u30C8\u3092\u8FFD\u52A0",deleteNote:"\u30B3\u30E1\u30F3\u30C8\u3092\u524A\u9664",toggleNote:"\u30B3\u30E1\u30F3\u30C8\u306E\u8868\u793A/\u975E\u8868\u793A"}}},o=e(t);export{o as default};

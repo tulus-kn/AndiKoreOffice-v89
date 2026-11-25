@@ -1,0 +1,1 @@
+import{m as e}from"./index-DNpYkj0j.js";const t={"sheets-note-ui":{note:{placeholder:"Hier eingeben"},rightClick:{addNote:"Notiz hinzuf\xFCgen",deleteNote:"Notiz l\xF6schen",toggleNote:"Notiz anzeigen/ausblenden"}}},o=e(t);export{o as default};
