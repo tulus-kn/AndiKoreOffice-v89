@@ -1,0 +1,15 @@
+# Kunci & rahasia — jangan pernah di commit
+*.jks
+*.keystore
+*.bks
+*.p12
+*.pfx
+*.idsig
+*CREDENTIALS*
+*keystore*properties
+*.env
+
+# Artefak build lokal yang tidak perlu di-track
+work/
+out/
+*.apk.idsig
