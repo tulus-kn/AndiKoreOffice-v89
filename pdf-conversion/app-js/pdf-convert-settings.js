@@ -164,6 +164,24 @@
 
   window.__akOpenPdfConvertSettings = open;
 
+  /* Tombol melayang di halaman PDF sebagai titik masuk sementara,
+     sampai bundle menyediakan menu sendiri. */
+  function ensureFab() {
+    if (document.getElementById('ak-pcs-fab')) return;
+    var b = document.createElement('button');
+    b.id = 'ak-pcs-fab';
+    b.type = 'button';
+    b.setAttribute('data-pdfconv', 'settings');
+    b.textContent = 'Konversi PDF';
+    b.style.cssText = 'position:fixed;right:14px;bottom:88px;z-index:2147483000;border:0;border-radius:12px;padding:11px 14px;background:#2A4BFF;color:#fff;font:700 13px/1 inherit;box-shadow:0 4px 14px rgba(20,40,90,.35)';
+    document.body.appendChild(b);
+  }
+  function bootFab() {
+    if (document.body) ensureFab();
+    else document.addEventListener('DOMContentLoaded', ensureFab);
+  }
+  bootFab();
+
   /* Hook untuk tombol yang nanti ditambahkan di bundle:
      elemen ber-atribut data-pdfconv="settings" membuka dialog ini. */
   document.addEventListener('click', function (ev) {
