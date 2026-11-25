@@ -1,0 +1,17 @@
+# Blueprint Render (free tier).
+# Deploy: dashboard Render → New → Web Service → pilih repo GitHub ini,
+# set "Root Directory" ke pdf-conversion/server, atau biarkan blueprint terbaca.
+services:
+  - type: web
+    name: andikore-pdf-conv
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port ${PORT:-8000}
+    healthCheckPath: /healthz
+    envVars:
+      - key: MAX_MB
+        value: "15"
+      # Isi nilai rahasia di dashboard Render; jangan taruh token di sini.
+      - key: AUTH_TOKEN
+        sync: false
