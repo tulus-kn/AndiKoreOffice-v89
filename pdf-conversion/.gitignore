@@ -1,0 +1,14 @@
+__pycache__/
+*.pyc
+.venv/
+.env
+*.jks
+*.keystore
+credential*
+
+# Aset pribadi Opsi 3 — jangan commit ke repo publik
+rebuild-docx/X7.jpg
+rebuild-docx/*.jpg
+rebuild-docx/build_cv.py
+rebuild-docx/*.docx
+rebuild-docx/contoh-hasil.docx
